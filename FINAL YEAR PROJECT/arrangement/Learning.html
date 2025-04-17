@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="display-result"></p>
+
+<button onclick="addGame('rock')">Rock</button>
+<button onclick="addGame('paper')">Paper</button>
+<button onclick="addGame('scissor')">Scissor</button>
+
+<script>
+
+function addGame(playerChoice) {
+  const choices = ['rock', 'paper','scissor'];
+  const computerChoice =choices[Math.floor(Math.random() * choices.length)];
+
+  let result = '';
+
+  if (playerChoice === computerChoice) {
+    result = 'Tie'
+  } else if (
+    playerChoice === 'rock' && computerChoice === 'scissor' ||
+    playerChoice === 'paper' && computerChoice === 'rock' ||
+    playerChoice === 'scissor' && computerChoice === 'paper' 
+  ) {
+    result = `win! ${playerChoice} beat ${computerChoice}`
+  } else {
+    result `you lose! ${computerChoice} beat ${playerChoice}`
+  }
+
+  document.getElementById('display-result').textContent = result;ae
+}
+
+</script>
+
+</body>
+</html>

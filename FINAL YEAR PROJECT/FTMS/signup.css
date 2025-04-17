@@ -1,0 +1,84 @@
+body {
+  background-color: #f4f4f4;
+  height: 100vh;
+  display: flex;
+}
+
+
+ .parent-container {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  }
+  
+  
+  .left-section {
+   flex: 2;
+   background: url('img/football-player-in-the-stadium.jpg') no-repeat center center/cover;
+   color: white;
+   padding: 40px;
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   /* border-top-left-radius: 50px; */
+   
+  }
+
+  .right-section {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .right-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .right-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .right-section button {
+    padding: 10px ;
+    background: yellow;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .right-section button:hover{
+    background-color: #f5b501;
+  }
+
+  .login-text {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .login-text a {
+    color: yellow;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-text a:hover {
+    text-decoration: underline;
+    color: #f5b501;
+  }
+
+  .error-message{
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  }

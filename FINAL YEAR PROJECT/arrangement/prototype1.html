@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+section {
+    background: #fff;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #007bff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+}
+
+
+  </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Tournament</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Football Tournament</h1>
+
+    <!-- Match Schedule -->
+    <section class="schedule">
+        <h2>Match Schedule</h2>
+        <ul id="match-schedule"></ul>
+    </section>
+
+    <!-- Match Results -->
+    <section class="results">
+        <h2>Recent Results</h2>
+        <ul id="match-results"></ul>
+    </section>
+
+    <!-- Live Scoreboard -->
+    <section class="scoreboard">
+        <h2>Live Scoreboard</h2>
+        <div id="live-score">Team X 0 - 0 Team Y</div>
+        <button onclick="updateScore()">Update Score</button>
+    </section>
+
+    <!-- Leaderboard -->
+    <section class="leaderboard">
+        <h2>Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard"></tbody>
+        </table>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="admin-panel">
+        <h2>Admin Panel</h2>
+
+        <!-- Add Match -->
+        <div>
+            <h3>Add Match</h3>
+            <input type="text" id="match-teams" placeholder="Team A vs Team B">
+            <input type="date" id="match-date">
+            <button onclick="addMatch()">Add Match</button>
+        </div>
+
+        <!-- Update Results -->
+        <div>
+            <h3>Update Result</h3>
+            <input type="text" id="result-teams" placeholder="Team A vs Team B">
+            <input type="text" id="result-score" placeholder="2 - 1">
+            <button onclick="addResult()">Add Result</button>
+        </div>
+
+        <!-- Update Leaderboard -->
+        <div>
+            <h3>Update Leaderboard</h3>
+            <input type="text" id="leaderboard-team" placeholder="Team Name">
+            <input type="number" id="leaderboard-points" placeholder="Points">
+            <button onclick="updateLeaderboard()">Update Points</button>
+        </div>
+    </section>
+
+    <script>
+
+// Match Schedule Data
+let matchSchedule = [];
+let matchResults = [];
+let leaderboard = {};
+
+// Function to add a match to the schedule
+function addMatch() {
+    let teams = document.getElementById("match-teams").value;
+    let date = document.getElementById("match-date").value;
+
+    if (teams && date) {
+        matchSchedule.push(`${teams} - ${date}`);
+        updateMatchSchedule();
+        document.getElementById("match-teams").value = "";
+        document.getElementById("match-date").value = "";
+    }
+}
+
+// Function to update the match schedule UI
+function updateMatchSchedule() {
+    let scheduleList = document.getElementById("match-schedule");
+    scheduleList.innerHTML = "";
+    matchSchedule.forEach(match => {
+        let li = document.createElement("li");
+        li.textContent = match;
+        scheduleList.appendChild(li);
+    });
+}
+
+// Function to add match results
+function addResult() {
+    let teams = document.getElementById("result-teams").value;
+    let score = document.getElementById("result-score").value;
+
+    if (teams && score) {
+        matchResults.push(`${teams}: ${score}`);
+        updateResults();
+        document.getElementById("result-teams").value = "";
+        document.getElementById("result-score").value = "";
+    }
+}
+
+// Function to update results UI
+function updateResults() {
+    let resultsList = document.getElementById("match-results");
+    resultsList.innerHTML = "";
+    matchResults.forEach(result => {
+        let li = document.createElement("li");
+        li.textContent = result;
+        resultsList.appendChild(li);
+    });
+}
+
+// Function to update the leaderboard
+function updateLeaderboard() {
+    let team = document.getElementById("leaderboard-team").value;
+    let points = document.getElementById("leaderboard-points").value;
+
+    if (team && points) {
+        leaderboard[team] = parseInt(points);
+        renderLeaderboard();
+        document.getElementById("leaderboard-team").value = "";
+        document.getElementById("leaderboard-points").value = "";
+    }
+}
+
+// Function to render the leaderboard UI
+function renderLeaderboard() {
+    let leaderboardTable = document.getElementById("leaderboard");
+    leaderboardTable.innerHTML = "";
+
+    Object.entries(leaderboard)
+        .sort((a, b) => b[1] - a[1]) // Sort by points (descending)
+        .forEach(([team, points]) => {
+            let row = `<tr><td>${team}</td><td>${points}</td></tr>`;
+            leaderboardTable.innerHTML += row;
+        });
+}
+
+// Simulating live score updates
+function updateScore() {
+    let team1 = "Team X";
+    let team2 = "Team Y";
+    let score1 = Math.floor(Math.random() * 5);
+    let score2 = Math.floor(Math.random() * 5);
+
+    document.getElementById("live-score").innerText = `${team1} ${score1} - ${score2} ${team2}`;
+}
+      
+    </script>
+
+
+</body>
+</html>

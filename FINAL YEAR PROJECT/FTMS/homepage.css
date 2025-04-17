@@ -1,0 +1,104 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: white;
+    background: url('img/soccer-game-moment-with-goalkeeper.jpg') no-repeat center center/cover;
+}
+
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    /* background: rgba(0, 0, 0, 0.9); */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: yellow;
+    background: black;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f5b501;
+}
+
+.lg-btn{
+  background-color: #f5b501;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+ 
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    background-blend-mode: overlay;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #f5b501;
+}
+
+.hero h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.hero h1 span {
+    color: #f5b501;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 25px;
+    background: #f5b501;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.btn.secondary {
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
